@@ -1,0 +1,175 @@
+    ******************************************************************
+    * DCLGEN TABLE(CLIENTES)                                         *
+    *        LIBRARY(IBMUSER.DB2.DCLGEN(CLIENTES))                   *
+    *        ACTION(REPLACE)                                         *
+    *        LANGUAGE(COBOL)                                         *
+    *        NAMES(CLI-)                                             *
+    *        STRUCTURE(CLI-CLIENTES)                                 *
+    *        QUOTE                                                   *
+    * ... IS THE DCLGEN COMMAND THAT MADE THE FOLLOWING STATEMENTS   *
+    ******************************************************************
+         EXEC SQL DECLARE CLIENTES TABLE                              
+         ( ID_CLIENTE                     INTEGER NOT NULL,           
+           DNI_NIF                        CHAR(9) NOT NULL,           
+           NOMBRE                         VARCHAR(40) NOT NULL,       
+           APELLIDO1                      VARCHAR(40) NOT NULL,       
+           APELLIDO2                      VARCHAR(40),                
+           FECHA_NAC                      DATE NOT NULL,              
+           TELEFONO                       VARCHAR(15),                
+           EMAIL                          VARCHAR(60),                
+           ESTADO                         CHAR(1) NOT NULL,           
+           FECHA_ALTA                     DATE NOT NULL               
+         ) END-EXEC.                                                  
+    ******************************************************************
+    * COBOL DECLARATION FOR TABLE CLIENTES                           *
+    ******************************************************************
+     01  CLI-CLIENTES.                                                
+    *                       ID_CLIENTE                                
+         10 CLI-1                PIC S9(9) USAGE COMP.                
+    *                       DNI_NIF                                   
+         10 CLI-2                PIC X(9).                            
+         10 CLI-3.                                                    
+    *                       NOMBRE LENGTH                             
+            49 CLI-3-LEN         PIC S9(4) USAGE COMP.                
+    *                       NOMBRE                                    
+            49 CLI-3-TEXT        PIC X(40).                           
+         10 CLI-4.                                                    
+    *                       APELLIDO1 LENGTH                          
+            49 CLI-4-LEN         PIC S9(4) USAGE COMP. 
+     *                       APELLIDO1                                 
+            49 CLI-4-TEXT        PIC X(40).                           
+         10 CLI-5.                                                    
+    *                       APELLIDO2 LENGTH                          
+            49 CLI-5-LEN         PIC S9(4) USAGE COMP.                
+    *                       APELLIDO2                                 
+            49 CLI-5-TEXT        PIC X(40).                           
+    *                       FECHA_NAC                                 
+         10 CLI-6                PIC X(10).                           
+         10 CLI-7.                                                    
+    *                       TELEFONO LENGTH                           
+            49 CLI-7-LEN         PIC S9(4) USAGE COMP.                
+    *                       TELEFONO                                  
+            49 CLI-7-TEXT        PIC X(15).                           
+         10 CLI-8.                                                    
+    *                       EMAIL LENGTH                              
+            49 CLI-8-LEN         PIC S9(4) USAGE COMP.                
+    *                       EMAIL                                     
+            49 CLI-8-TEXT        PIC X(60).                           
+    *                       ESTADO                                    
+         10 CLI-9                PIC X(1).                            
+    *                       FECHA_ALTA                                
+         10 CLI-10               PIC X(10).                           
+    ******************************************************************
+    * THE NUMBER OF COLUMNS DESCRIBED BY THIS DECLARATION IS 10      *
+    ******************************************************************               
+    ******************************************************************
+    * DCLGEN TABLE(CUENTAS)                                          *
+    *        LIBRARY(IBMUSER.DB2.DCLGEN(CUENTAS))                    *
+    *        ACTION(REPLACE)                                         *
+    *        LANGUAGE(COBOL)                                         *
+    *        NAMES(SP-CUENTAS)                                       *
+    *        STRUCTURE(SP-CUENTAS)                                   *
+    *        QUOTE                                                   *
+    * ... IS THE DCLGEN COMMAND THAT MADE THE FOLLOWING STATEMENTS   *
+    ******************************************************************
+         EXEC SQL DECLARE CUENTAS TABLE                               
+         ( ID_CUENTA                      INTEGER NOT NULL,           
+           ID_CLIENTE                     INTEGER NOT NULL,           
+           IBAN                           CHAR(24) NOT NULL,          
+           SALDO                          DECIMAL(15, 2) NOT NULL,    
+           ESTADO                         CHAR(1) NOT NULL,           
+           FECHA_APERTURA                 DATE NOT NULL               
+         ) END-EXEC.                                                  
+    ******************************************************************
+    * COBOL DECLARATION FOR TABLE CUENTAS                            *
+    ******************************************************************
+     01  SP-CUENTAS.                                                  
+    *                       ID_CUENTA                                 
+         10 SP-CUENTAS1          PIC S9(9) USAGE COMP.                
+    *                       ID_CLIENTE                                
+         10 SP-CUENTAS2          PIC S9(9) USAGE COMP.                
+    *                       IBAN                                      
+         10 SP-CUENTAS3          PIC X(24).                           
+    *                       SALDO                                     
+         10 SP-CUENTAS4          PIC S9(13)V9(2) USAGE COMP-3.        
+    *                       ESTADO                                    
+         10 SP-CUENTAS5          PIC X(1).                            
+    *                       FECHA_APERTURA                            
+         10 SP-CUENTAS6          PIC X(10).                           
+    ******************************************************************
+    * THE NUMBER OF COLUMNS DESCRIBED BY THIS DECLARATION IS 6       *
+    ******************************************************************
+    ******************************************************************
+    * DCLGEN TABLE(MOVIMIENTOS)                                      *
+    *        LIBRARY(IBMUSER.DB2.DCLGEN(MOVIMIEN))                   *
+    *        ACTION(REPLACE)                                         *
+    *        LANGUAGE(COBOL)                                         *
+    *        NAMES(WS-MOVI)                                          *
+    *        STRUCTURE(WS-MOVI)                                      *
+    *        QUOTE                                                   *
+    * ... IS THE DCLGEN COMMAND THAT MADE THE FOLLOWING STATEMENTS   *
+    ******************************************************************
+         EXEC SQL DECLARE MOVIMIENTOS TABLE                           
+         ( ID_MOVIMIENTO                  INTEGER NOT NULL,           
+           ID_TRANSFERENCIA               INTEGER NOT NULL,           
+           ID_CUENTA                      INTEGER NOT NULL,           
+           TIPO_MOV                       CHAR(1) NOT NULL,           
+           IMPORTE                        DECIMAL(15, 2) NOT NULL,    
+           FECHA_MOV                      DATE NOT NULL               
+         ) END-EXEC.                                                  
+    ******************************************************************
+    * COBOL DECLARATION FOR TABLE MOVIMIENTOS                        *
+    ******************************************************************
+     01  WS-MOVI.                                                     
+    *                       ID_MOVIMIENTO                             
+         10 WS-MOVI1             PIC S9(9) USAGE COMP.                
+    *                       ID_TRANSFERENCIA                          
+         10 WS-MOVI2             PIC S9(9) USAGE COMP.                
+    *                       ID_CUENTA                                 
+         10 WS-MOVI3             PIC S9(9) USAGE COMP.                
+    *                       TIPO_MOV                                  
+         10 WS-MOVI4             PIC X(1).                            
+    *                       IMPORTE                                   
+         10 WS-MOVI5             PIC S9(13)V9(2) USAGE COMP-3.        
+    *                       FECHA_MOV                                 
+         10 WS-MOVI6             PIC X(10).                           
+    ******************************************************************
+    * THE NUMBER OF COLUMNS DESCRIBED BY THIS DECLARATION IS 6       *
+    ******************************************************************
+   ******************************************************************
+   * DCLGEN TABLE(TRANSFERENCIAS)                                   *
+   *        LIBRARY(IBMUSER.DB2.DCLGEN(TRANSFE))                    *
+   *        ACTION(REPLACE)                                         *
+   *        LANGUAGE(COBOL)                                         *
+   *        NAMES(WP-TRANSFE)                                       *
+   *        STRUCTURE(WP-TRANSFE)                                   *
+   *        QUOTE                                                   *
+   * ... IS THE DCLGEN COMMAND THAT MADE THE FOLLOWING STATEMENTS   *
+   ******************************************************************
+        EXEC SQL DECLARE TRANSFERENCIAS TABLE                        
+        ( ID_TRANSFERENCIA               INTEGER NOT NULL,           
+          CTA_ORIGEN                     INTEGER NOT NULL,           
+          CTA_DESTINO                    INTEGER NOT NULL,           
+          IMPORTE                        DECIMAL(15, 2) NOT NULL,    
+          FECHA_TRANSF                   DATE NOT NULL,              
+          ESTADO                         CHAR(1) NOT NULL            
+        ) END-EXEC.                                                  
+   ******************************************************************
+   * COBOL DECLARATION FOR TABLE TRANSFERENCIAS                     *
+   ******************************************************************
+    01  WP-TRANSFE.                                                  
+   *                       ID_TRANSFERENCIA                          
+        10 WP-TRANSFE1          PIC S9(9) USAGE COMP.                
+   *                       CTA_ORIGEN                                
+        10 WP-TRANSFE2          PIC S9(9) USAGE COMP.                
+   *                       CTA_DESTINO                               
+        10 WP-TRANSFE3          PIC S9(9) USAGE COMP.                
+   *                       IMPORTE                                   
+        10 WP-TRANSFE4          PIC S9(13)V9(2) USAGE COMP-3.        
+   *                       FECHA_TRANSF                              
+        10 WP-TRANSFE5          PIC X(10).                           
+   *                       ESTADO                                    
+        10 WP-TRANSFE6          PIC X(1).                            
+   ******************************************************************
+   * THE NUMBER OF COLUMNS DESCRIBED BY THIS DECLARATION IS 6       *
+   ******************************************************************
